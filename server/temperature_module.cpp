@@ -2,6 +2,8 @@
 #include <cstring>
 
 #include "temperature_module.h"
+#include "sqlite_logger.h"
+
 #include <mosquittopp.h>
 
 mqtt_tempmod::mqtt_tempmod(const char *id, const char *host, int port): mosquittopp(id)
