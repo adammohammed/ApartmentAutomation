@@ -28,7 +28,7 @@ def record_temperature(dbfile, temperature_data):
     @param conn: Connection object
     @param temperature_data: data from mqtt
     '''
-    sql = ''' INSERT INTO TEMPERATURE_LOG (CELSIUS)
+    sql = ''' INSERT INTO temperature_log (CELSIUS)
               VALUES (?);'''
 
     try:
