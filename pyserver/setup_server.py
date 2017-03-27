@@ -15,11 +15,11 @@ def create_tables():
     CREATE TABLE IF NOT EXISTS temperature_log (
     _ID        INTEGER PRIMARY KEY AUTOINCREMENT     NOT NULL,
     LOGGED     DATETIME                              DEFAULT (datetime('now','localtime')),
-    CELSIUS    DOUBLE                                NOT NULL
+    TEMPF      DOUBLE                                NOT NULL
     );
     ''')
 
-    c.execute('''INSERT INTO temperature_log (CELSIUS) VALUES (33.4);''')
+    c.execute('''INSERT INTO temperature_log (TEMPF) VALUES (33.4);''')
 
     conn.commit()
 
