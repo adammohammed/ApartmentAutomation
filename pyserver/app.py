@@ -25,7 +25,7 @@ def get_temps():
 
     entries = c.fetchall()
     conn.close()
-    for entry in tentries:
+    for entry in entries:
         t = {'_ID': entry[0],
              'LOGGED': entry[1],
              'TEMPF': entry[2]}
