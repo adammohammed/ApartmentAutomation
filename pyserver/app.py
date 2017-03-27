@@ -4,17 +4,23 @@ from flask import Flask
 import sqlite3
 
 
-app = Flask(__name__,static_url_path='')
+app = Flask(__name__)
 
 @app.route('/')
-def home():
-    return app.send_static_file('graph.html')
+def fun():
+    return '<h1> HELLO IM HERE </h1>'
 
-@app.route('/drawgraph.js')
-def js():
-    return app.send_static_file('drawgraph.js')
+@app.route('/debug')
+def get_temps_dummy():
+    temps = []
+    temps.append({'_ID':1, 'LOGGED':'123','TEMPF':'72.0'})
+    temps.append({'_ID':2, 'LOGGED':'123','TEMPF':'72.0'})
+    temps.append({'_ID':3, 'LOGGED':'123','TEMPF':'72.0'})
+    temps.append({'_ID':4, 'LOGGED':'123','TEMPF':'72.0'})
 
-@app.route('/api/temp_sensor')
+    return json.dumps(temps)
+
+@app.route('/temp_sensor')
 def get_temps():
     conn = sqlite3.connect('../db/temperature.db')
 
