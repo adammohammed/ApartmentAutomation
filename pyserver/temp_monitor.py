@@ -15,8 +15,8 @@ def on_message(client, userdata, message):
     Message callback for MQTT
     Reads message and stores temp to db
     '''
-    print('{} {}'.format(message.topic, message.payload))
     data = (float(message.payload),)
+    print('{} {}'.format(message.topic, data))
     dbpath = "../db/temperature.db"
 
     record_temperature(dbpath, data)
@@ -28,7 +28,7 @@ def record_temperature(dbfile, temperature_data):
     @param conn: Connection object
     @param temperature_data: data from mqtt
     '''
-    sql = ''' INSERT INTO temperature_log (CELSIUS)
+    sql = ''' INSERT INTO temperature_log (TEMPF)
               VALUES (?);'''
 
     try:
@@ -45,6 +45,7 @@ if __name__ == "__main__":
     client.on_message = on_message
 
 
+    client.username_pw_set('username-here','password-here')
     client.connect("localhost", 1883, 60)
 
     client.loop_forever()
