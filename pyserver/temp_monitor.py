@@ -1,4 +1,5 @@
 import paho.mqtt.client as mqtt
+import yaml
 import sqlite3
 
 def on_connect(client, userdata, flags, rc):
