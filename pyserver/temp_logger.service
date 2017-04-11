@@ -1,0 +1,12 @@
+[Unit]
+Description=MQTT monitor and records temperatures
+After=syslog.target
+
+[Service]
+WorkingDirectory=/home/www-data/ApartmentAutomation/pyserver
+ExecStart=/home/www-data/ApartmentAutomation/pyserver/server/bin/python temp_monitor.py
+Restart=always
+KillSignal=SIGQUIT
+
+[Install]
+WantedBy=multi-user.target
