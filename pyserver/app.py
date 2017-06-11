@@ -25,7 +25,7 @@ def get_temps():
     conn = sqlite3.connect('../db/temperature.db')
 
     c = conn.cursor()
-    c.execute('''SELECT * FROM temperature_log order by _ID DESC LIMIT 10;''')
+    c.execute('''SELECT * FROM temperature_log order by _ID DESC LIMIT 30;''')
 
     temps = []
 

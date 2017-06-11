@@ -1,4 +1,5 @@
 import paho.mqtt.client as mqtt
+import yaml
 import sqlite3
 
 def on_connect(client, userdata, flags, rc):
@@ -15,8 +16,8 @@ def on_message(client, userdata, message):
     Message callback for MQTT
     Reads message and stores temp to db
     '''
-    print('{} {}'.format(message.topic, message.payload))
     data = (float(message.payload),)
+    print('{} {}'.format(message.topic, data))
     dbpath = "../db/temperature.db"
 
     record_temperature(dbpath, data)
@@ -28,7 +29,7 @@ def record_temperature(dbfile, temperature_data):
     @param conn: Connection object
     @param temperature_data: data from mqtt
     '''
-    sql = ''' INSERT INTO temperature_log (CELSIUS)
+    sql = ''' INSERT INTO temperature_log (TEMPF)
               VALUES (?);'''
 
     try:
