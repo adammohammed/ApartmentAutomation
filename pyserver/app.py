@@ -1,15 +1,31 @@
 import json
 
-from flask import Flask
+from flask import Flask, request
 import sqlite3
 
 
 app = Flask(__name__)
 
-@app.route('/')
-def fun():
-    return '<h1> HELLO IM HERE </h1>'
+water_valve = "closed"
 
+@app.route('/valve_status', methods=["GET"])
+def get_water_status():
+    out = { "status": water_valve }
+    return json.dumps(out)
+
+@app.route('/water', methods=["POST"])
+def set_valve_status():
+    body = request.get_json();
+    if body:
+        status = body.get("status", "none")
+        global water_valve
+        water_valve = status
+        return water_valve
+    else:
+        return "Error: No data (or wrong type)"
+    
+    
+	
 @app.route('/debug')
 def get_temps_dummy():
     temps = []
