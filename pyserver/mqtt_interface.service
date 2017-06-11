@@ -4,7 +4,7 @@ After=syslog.target
 
 [Service]
 WorkingDirectory=/home/www-data/ApartmentAutomation/pyserver
-ExecStart=/home/www-data/ApartmentAutomation/pyserver/server/bin/python temp_monitor.py
+ExecStart=/home/www-data/ApartmentAutomation/pyserver/server/bin/python mqtt_interface.py
 Restart=always
 KillSignal=SIGQUIT
 

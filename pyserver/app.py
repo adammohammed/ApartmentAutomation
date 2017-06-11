@@ -23,9 +23,7 @@ def set_valve_status():
         return water_valve
     else:
         return "Error: No data (or wrong type)"
-    
-    
-	
+
 @app.route('/debug')
 def get_temps_dummy():
     temps = []
