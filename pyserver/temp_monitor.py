@@ -45,6 +45,12 @@ if __name__ == "__main__":
     client.on_message = on_message
 
 
+    with open('config.yaml', 'r') as f:
+        credentials = yaml.load(f)
+
+    user = credentials['user']
+    password = credentials['password']
+    client.username_pw_set(user, password)
     client.connect("localhost", 1883, 60)
 
     client.loop_forever()
